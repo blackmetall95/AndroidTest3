@@ -23,7 +23,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-    //String TestAlbum;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public void startCamera(View view){
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -39,6 +38,7 @@ public class MainActivity extends Activity {
                 Uri photoURI = FileProvider.getUriForFile(this,"com.test.jiajie.test3.fileprovider", photoFile);
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+                mediaScan();
             }
             //getAlbumStorageDir("TestAlbum");
         }
@@ -68,5 +68,13 @@ public class MainActivity extends Activity {
         //Save a file: path for use with ACTION_VIEW intents
         mPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    private void mediaScan() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
 }
