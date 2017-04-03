@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Test3</string>
     <string name="button_Camera">Camera</string>
+    <string name="title_activity_to_do">ToDoActivity</string>
+    <string name="button_ToDoList">Task Lists</string>
+    <string name="addItemHint">New To Do Item</string>
+    <string name="addItemContentDescription">New To Do Item</string>
 </resources>
